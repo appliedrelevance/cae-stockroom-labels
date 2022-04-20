@@ -9,9 +9,9 @@ with open('locations-a.csv', 'w') as csvfile:
     head = ['Aisle', 'Level', 'Position', 'Location', 'Description']
     csvwriter.writerow(head)
     # Aisle        Level (shelves)   Position (right-to-left on shelves on the front side)
-    # 02->14     01->09               01->24
+    # 02->15       01->09            01->24
     # Example: 03 04 02
-    for aisle in range(2, 15):
+    for aisle in range(2, 14):
         strAisle = str(aisle)
         strAisle = strAisle.rjust(2, '0')  # 02, 03, 04...
         for level in range(1, 10):
@@ -28,10 +28,11 @@ with open('locations-b.csv', 'w') as csvfile:
     head = ['Aisle', 'Level', 'Position', 'Location', 'Description']
     csvwriter.writerow(head)
     # Aria product specific shelves:
-    # ARIA        01->09                01->07
+    # Aisle        Level (shelves)   Position (right-to-left on shelves on the front side)
+    # ARIA         01->11            01->07
     # Example: ARIA 06 05
     strAisle = 'ARIA'
-    for level in range(1, 10):
+    for level in range(1, 12):
         strLevel = str(level)
         strLevel = strLevel.rjust(2, '0')  # 01, 02...
         for position in range(1, 8):
@@ -128,3 +129,24 @@ with open('locations-b.csv', 'w') as csvfile:
         row = [strAisle, strLevel, strPosition, strAisle + ' ' + strLevel + ' ' + strPosition,
                'Engineering endcap - Aisle ' + strAisle + ' Level ' + strLevel + ' Position ' + strPosition]
         csvwriter.writerow(row)
+
+
+with open('locations-c.csv', 'w') as csvfile:
+    csvwriter = csv.writer(csvfile, dialect='excel')
+    head = ['Aisle', 'Level', 'Position', 'Location', 'Description']
+    csvwriter.writerow(head)
+    # Aisle        Level (shelves)   Position (right-to-left on shelves on the front side)
+    # 02->15       01->09            01->24
+    # Example: 03 04 02
+    for aisle in range(15, 16):
+        strAisle = str(aisle)
+        strAisle = strAisle.rjust(2, '0')  # 02, 03, 04...
+        for level in range(1, 5):
+            strLevel = str(level)
+            strLevel = strLevel.rjust(2, '0')  # 01, 02...
+            for position in range(1, 19):
+                strPosition = str(position)
+                strPosition = strPosition.rjust(2, '0')
+                row = [strAisle, strLevel, strPosition, strAisle + ' ' + strLevel + ' ' + strPosition,
+                       'Stockroom Floor - Aisle ' + strAisle + ' Level ' + strLevel + ' Position ' + strPosition]
+                csvwriter.writerow(row)
